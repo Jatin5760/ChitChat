@@ -1,5 +1,5 @@
 import { Link } from "expo-router";
-import { Text, View } from "react-native";
+import { Image, Pressable, Text, TouchableOpacity, View } from "react-native";
 import { styles } from "../styles/auth.styles.js";
 
 
@@ -8,7 +8,7 @@ export default function Index() {
     <View style={styles.container}>
       <Text style={styles.title}>Hello</Text>
 
-      {/* <Image 
+      <Image 
       source={require("../assets/images/icon.png")}
       style={{width:100, height:100}}/>
 
@@ -18,17 +18,18 @@ export default function Index() {
         width: 200,
         height: 200,
         resizeMode: "cover"
-      }}/> */}
+      }}/>
 
       <Link href={"/notifications"}> Visit Notifications Screen</Link>
       
-      {/* <TouchableOpacity onPress={() => alert("You touched")}>
+    
+      <TouchableOpacity onPress={() => alert("You touched")}>
         <Text>Touch Me</Text>
       </TouchableOpacity>
 
       <Pressable onPress={()=> alert("You pressed me")}>
         <Text> Press Me</Text>
-      </Pressable> */}
+      </Pressable>
     </View>
   );
 }
