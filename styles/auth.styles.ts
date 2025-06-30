@@ -28,7 +28,7 @@ export const styles = StyleSheet.create({
     fontFamily: "JetBrainsMono-Medium",
     color: COLORS.primary,
     letterSpacing: 0.5,
-    marginBottom: 8,
+    marginBottom: 5,
   },
   tagline: {
     fontSize: 16,
@@ -43,8 +43,8 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 40,
   },
   illustration: {
-    width: width * 0.75,
-    height: width * 0.75,
+    width: width * 0.95,
+    height: width * 0.95,
     maxHeight: 280,
   },
   loginSection: {
