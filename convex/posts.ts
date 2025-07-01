@@ -28,7 +28,7 @@ export const createPost = mutation({
         if(!imageUrl) throw new Error("Image not found");
 
         // CreatePost
-        await ctx.db.insert("posts", {
+        const postId = await ctx.db.insert("posts", {
             userId: currentUser._id,
             imageUrl,
             storageId: args.storageId,
@@ -36,5 +36,12 @@ export const createPost = mutation({
             likes: 0,
             comment: 0
         })
+
+        // Increment user's post count by 1
+        await ctx.db.patch(currentUser._id,{
+            posts: currentUser.posts + 1
+        })
+
+        return postId;
     },
 })
