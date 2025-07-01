@@ -2,17 +2,18 @@ import { useAuth } from "@clerk/clerk-expo";
 import { Text, TouchableOpacity, View } from "react-native";
 import { styles } from "../../styles/auth.styles";
 
-
 export default function Index() {
-  const {signOut} = useAuth()
+  const { signOut } = useAuth();
   return (
     <View style={styles.container}>
-
-      <TouchableOpacity onPress={() => signOut()}>
-        <Text style={{color:"white"}}>SignOut</Text>
+      <TouchableOpacity
+        onPress={async () => {
+          await signOut();
+          // Optionally navigate or reload
+        }}
+      >
+        <Text style={{ color: "white" }}>SignOut</Text>
       </TouchableOpacity>
-
-
 
       {/* <Text style={styles.title}>Hello</Text> */}
 
@@ -30,7 +31,7 @@ export default function Index() {
 
       <Link href={"/notifications"}> Visit Notifications Screen</Link>
        */}
-    
+
       {/* <TouchableOpacity onPress={() => alert("You touched")}>
         <Text>Touch Me</Text>
       </TouchableOpacity> */}
@@ -41,4 +42,3 @@ export default function Index() {
     </View>
   );
 }
-
