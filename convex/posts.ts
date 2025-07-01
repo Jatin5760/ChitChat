@@ -15,6 +15,26 @@ export const createPost = mutation({
 
     handler: async (ctx, args) => {
         // Implement the logic for creating a post here
-        console.log("Creating post with caption:", caption, "and storageId:", storageId);
+        const identity = await ctx.auth.getUserIdentity();
+        if(!identity) throw new Error("Unauthorized");
+
+        const currentUser = await ctx.db
+        .query("users")
+        .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
+        .first()
+
+        if(!currentUser) throw new Error("User not found");
+        const imageUrl = await ctx.storage.getUrl(args.storageId);
+        if(!imageUrl) throw new Error("Image not found");
+
+        // CreatePost
+        await ctx.db.insert("posts", {
+            userId: currentUser._id,
+            imageUrl,
+            storageId: args.storageId,
+            caption: args.caption,
+            likes: 0,
+            comment: 0
+        })
     },
 })
